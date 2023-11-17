@@ -1,0 +1,2 @@
+﻿  graph1.cpp
+C:\서울시립대\2-2\코드\자료구조_graph\자료구조_graph\graph1.cpp(50): error C4716: 'makeAdjacentVertex': 값을 반환해야 합니다.

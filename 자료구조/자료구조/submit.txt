@@ -1,0 +1,229 @@
+// 1
+#define _CRT_SECURE_NO_WARNINGS
+#pragma warning(disable:4996)
+#include<stdio.h>
+
+int rec(int num)
+{
+
+    if (num == 1) {
+        return 1;
+    }
+    return num + rec(num - 1);
+
+}
+
+int main()
+{
+    int N, ans;
+    scanf("%d", &N);
+    ans = rec(N);
+    printf("%d", ans);
+    return 0;
+}
+
+// 2
+#define _CRT_SECURE_NO_WARNINGS
+#pragma warning(disable:4996)
+#include<stdio.h>
+
+void rec(int num)
+{
+    int cut;
+    cut = num % 10;
+
+    if (num / 10 == 0) {
+        printf("%d\n", cut);
+    }
+    else
+    {
+        rec(num / 10);
+        printf("%d\n", cut);
+    }
+}
+
+int main()
+{
+    int N, ans;
+    scanf("%d", &N);
+
+    rec(N);
+    return 0;
+}
+
+// 3
+#define _CRT_SECURE_NO_WARNINGS
+#pragma warning(disable:4996)
+#include<stdio.h>
+
+void rec(int num)
+{
+    int cut;
+    cut = num % 10;
+
+    if (num / 10 == 0) {
+        printf("%d", cut);
+    }
+    else
+    {
+        printf("%d\n", cut);
+        rec(num / 10);
+    }
+}
+
+int main()
+{
+    int N, ans;
+    scanf("%d", &N);
+
+    rec(N);
+    return 0;
+}
+
+// 4
+#define _CRT_SECURE_NO_WARNINGS
+#pragma warning(disable:4996)
+#include<stdio.h>
+
+int comp(int* num, int N)
+{
+    if (N == 2) {
+        return (num[0] > num[N - 1] ? num[0] : num[N - 1]);
+    }
+    else {
+        int big1;
+        big1 = comp(num, N - 1);
+        return (big1 > num[N - 1] ? big1 : num[N - 1]);
+    }
+}
+
+int main()
+{
+    int N;
+    int lst[20];
+    scanf("%d", &N);
+    for (int i = 0; i < N; i++) {
+        scanf("%d", &lst[i]);
+    }
+    int k;
+    k = comp(lst, N);
+    printf("%d", k);
+    return 0;
+}
+
+//5
+#define _CRT_SECURE_NO_WARNINGS
+#pragma warning(disable:4996)
+#include<stdio.h>
+
+void hanoi(int N, char start, char end)
+{
+    if (N == 1) {
+        printf("%c %c\n", start, end);
+        return;
+    }
+    else {
+        if (start == 'A' && end == 'C') {
+            hanoi(N - 1, 'A', 'B');
+            hanoi(1, 'A', 'C');
+            hanoi(N - 1, 'B', 'C');
+        }
+        else if (start == 'A' && end == 'B') {
+            hanoi(N - 1, 'A', 'C');
+            hanoi(1, 'A', 'B');
+            hanoi(N - 1, 'C', 'B');
+        }
+        else if (start == 'B' && end == 'C') {
+            hanoi(N - 1, 'B', 'A');
+            hanoi(1, 'B', 'C');
+            hanoi(N - 1, 'A', 'C');
+        }
+        else if (start == 'B' && end == 'A') {
+            hanoi(N - 1, 'B', 'C');
+            hanoi(1, 'B', 'A');
+            hanoi(N - 1, 'C', 'A');
+        }
+        else if (start == 'C' && end == 'A') {
+            hanoi(N - 1, 'C', 'B');
+            hanoi(1, 'C', 'A');
+            hanoi(N - 1, 'B', 'A');
+        }
+        else if (start == 'C' && end == 'B') {
+            hanoi(N - 1, 'C', 'A');
+            hanoi(1, 'C', 'B');
+            hanoi(N - 1, 'A', 'B');
+        }
+        return;
+    }
+}
+
+int main()
+{
+    int N;
+    scanf("%d", &N);
+    hanoi(N, 'A', 'C');
+
+
+    return 0;
+}
+
+// 6
+#define _CRT_SECURE_NO_WARNINGS
+#pragma warning(disable:4996)
+#include<stdio.h>
+
+int recu(int a, int b) {
+    
+    int r;
+    r = a % b;
+    if (r == 0) return b;
+    return recu(b, r);
+}
+
+int main()
+{
+    int a, b, ans;
+    scanf("%d %d", &a, &b);
+
+    ans = recu(a, b);
+
+    printf("%d", ans);
+    return 0;
+}
+
+// 7
+#define _CRT_SECURE_NO_WARNINGS
+#pragma warning(disable:4996)
+#include<stdio.h>
+
+int check(char* ch, int start, char w) {
+    if (sizeof(ch)-1 == start) {
+        if (ch[start] == w) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
+    else{
+        if (ch[start] == w) {
+            return 1 + check(ch, ++start, w);
+        }
+        else {
+            return 0 + check(ch, ++start, w);
+        }
+    }
+}
+
+int main()
+{
+    int ck;
+    char str[100];
+    char word;
+    scanf("%s", str);
+    getchar();
+    scanf("%c", &word);
+    ck=check(str, 0, word);
+    printf("%d", ck);
+    return 0;
+}
